@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legends</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="bg.icon">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Reset default styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            /* font-family: 'Poppins', sans-serif; */
+        }
+        
+
+        body {
+            background: linear-gradient(90deg, #0f0c29, #302b63, #24243e);
+            color: white;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        header .logo h1 {
+            font-family: 'Cascadia Code', sans-serif;
+            font-size: 28px;
+            color: #ff1e56;
+            letter-spacing: 2px;
+        }
+
+        /* Main Section */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 15vh;
+            text-align: center;
+            margin-top: 0px;
+        }
+
+        .main-content h1 {
+            font-size: 70px;
+            background: -webkit-linear-gradient(#ff4e50, #f9d423);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .main-content p {
+            font-size: 20px;
+            color: #f2f2f2;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: #04011f;
+            margin-top: 50px;
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+            color: #ff9a00;
+            box-shadow: 0 -10px 30px #5895b4;
+            flex: 1;
+        }
+
+        .portfolio h2 {
+            font-size: 60px;
+            margin-bottom: 40px;
+            text-decoration: none;
+        }
+
+        .profile {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            justify-content: center;
+            text-decoration: none;
+        }
+
+        .person {
+    text-decoration: none;        
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* تغيير الزوايا حسب الشكل المطلوب */
+    background-size: cover; /* استخدم cover لملء الخلفية */
+    background-position: center; /* تأكد من وضع الصورة في المنتصف */
+    background-repeat: no-repeat; /* إزالة التكرار */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* إضافة ظل للصورة */
+}
+
+
+        .person:hover {
+            transform: scale(1.2);
+            box-shadow: 0 8px 16px #ffa600;
+        }
+
+        .info-wrapper {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .info {
+            margin-top: 10px;
+            color: #f2f2f2;
+        }
+
+        /* Footer */
+        footer {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #ff1e56;
+            padding: 20px;
+            text-align: center;
+            margin-top: auto;
+            text-decoration: none;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            padding: 20px;
+            background-color: #ff1e56;
+            color: white;
+            position: fixed;
+            top: 0;
+            right: -250px;
+            height: 100vh;
+            overflow-y: auto;
+            transition: all 0.3s ease;
+            z-index: 1001;
+            text-decoration: none;
+        }
+
+        .sidebar.active {
+            right: 0;
+        }
+
+        .sidebar h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .toggle-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1002;
+            background-color: #ff1e5696;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-content h1 {
+                font-size: 50px;
+            }
+
+            .portfolio h2 {
+                font-size: 40px;
+            }
+
+            .person {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
+        /* Logo Section */
+        .logo-section {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column; /* لجعل النص أسفل الصورة */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-section img {
+            width: 500px; /* زيادة حجم اللوجو */
+            height: auto;
+        }
+
+        .logo-section h1 {
+            margin-top: 10px; /* إضافة مسافة بين الصورة والنص */
+            font-size: 40px;
+            color: #ff1e56;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <header>
+        
+        <div class="logo" style="display: flex; align-items: center;">
+            <img src="bg.icon" alt="Lotus Logo" style="width: 45px; height: 45px; margin-right: 10px;">
+            <h1>Legends</h1>
+        </div>
+    </header>
+    
+
+    <!-- Logo Section -->
+    <div class="logo-section">
+        <img src="le.icon" alt="Legends Logo">
+    </div>
+
+    <!-- Main Content -->
+    <section class="main-content">
+        <div>
+            <h1>Legends</h1>
+            <p>skilled team</p>
+        </div>
+    </section>
+
+    <!-- Toggle Button -->
+    <button class="toggle-btn" id="toggle-btn">≡</button>
+
+    <!-- Sidebar for Contact Info -->
+    <aside class="sidebar" id="contact-info">
+        <h2>Contact Info</h2>
+        <p>Email: <a href="mailto:example@example.com">example@example.com</a></p>
+        <p>Phone: +201141699086</p>
+        <p>Address: Minya, Egypt</p>
+    </aside>
+
+    <section class="portfolio">
+        <h2>Legend Team</h2>
+    
+        <!-- Legends Team Titles -->
+        <div style="margin-top: 40px; text-align: center;">
+    
+            <!-- Team Member 1 -->
+            <h1 style="font-size: 60px; background: -webkit-linear-gradient(#ff4e50, #f9d423); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">supervisor</h1>
+            <div class="profile">
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('Zoz.icon'); background-size: contain; background-position: center;"></div>
+                    <div class="info-wrapper">
+                        <h3>Dr. Alhussein</h3>
+                        <p class="info">Admin</p>
+                    </div>
+                </a>
+
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('Zoz.icon'); background-size: contain; background-position: center;"></div>
+                    <div class="info-wrapper">
+                        <h3>Zeyad Baghdadi</h3>
+                        <p class="info">Organisor</p>
+                    </div>
+                </a>
+            </div>
+    
+            <!-- Team Member 2 -->
+            <h1 style="font-size: 60px; background: -webkit-linear-gradient(#ff4e50, #f9d423); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Directors</h1>
+            <div class="profile">
+            </div>
+    
+            <!-- Team Member 3 -->
+            <h1 style="font-size: 60px; background: -webkit-linear-gradient(#ff4e50, #f9d423); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"></h1>
+            <div class="profile">
+            </div>
+    
+            <!-- Portfolio for Team Head -->
+            <h2 style="margin-top: 40px;">(Headers)</h2>
+            <div class="profile">
+
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hacker.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>Habiba </h3>
+                        <p class="info">Assistant</p>
+                    </div>
+                </a>
+                
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hacker.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>Zeyad ragab</h3>
+                        <p class="info">social</p>
+                    </div>
+                </a>
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hacker.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>Maivel Ashraf</h3>
+                        <p class="info">scientific</p>
+
+                    </div>
+                </a>
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hacker.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>Sandy Ayman</h3>
+                        <p class="info">Scouting</p>
+                    </div>
+                </a>
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hacker.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>Tarek Ahmed </h3>
+                        <p class="info">Artistic</p>
+                    </div>
+                </a>
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hacker.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>John Ayoub</h3>
+                        <p class="info">sports</p>
+                    
+                    </div>
+                </a>
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hacker.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>Engy Abdelrahman</h3>
+                        <p class="info">Cultural</p>
+                    </div>
+                </a>
+            </div>
+    
+            
+            <h1 style="font-size: 60px; background: -webkit-linear-gradient(#ff4e50, #f9d423); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Members</h1>
+            <div class="profile">
+                
+            </div>
+    
+            <!-- Portfolio for Team Member 4 -->
+            <h2 style="margin-top: 40px;">(Rest of the team)</h2>
+            <div class="profile">
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hack.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>Mina Omil</h3>
+                        <p class="info">Member</p>
+                    </div>
+                </a>
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hack.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>Sofian Mohamed</h3>
+                        <p class="info">Member</p>
+                    </div>
+                </a>
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hack.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>Ahmed Tarek</h3>
+                        <p class="info">Member</p>
+                    </div>
+                </a>
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hack.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>Jouzeif botrous</h3>
+                        <p class="info">Member</p>
+                        
+                    </div>
+                </a>
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hack.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>Mahmoud Mohamed</h3>
+                        <p class="info">Member</p>
+                    </div>
+                </a>
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hack.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>Amr hossam</h3>
+                        <p class="info">Member</p>
+                    </div>
+                </a>
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hack.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>Sayed Shaher</h3>
+                        <p class="info">Member</p>
+                    </div>
+                </a>
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hack.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>Mohamed Diaa</h3>
+                        <p class="info">Member</p>
+                    </div>
+                </a>
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hack.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>Abdelrahman Ali</h3>
+                        <p class="info">Member</p>
+                    </div>
+                </a>
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hack.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>Lamloum Lamloum</h3>
+                        <p class="info">Member</p>
+                    </div>
+                </a>
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hack.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>Abdelrahman Moamen</h3>
+                        <p class="info">Member</p>
+                    </div>
+                </a>
+
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hack.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>Youssef Shams</h3>
+                        <p class="info">Member</p>
+                    </div>
+                </a>
+
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hack.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>Rafik Milad</h3>
+                        <p class="info">Member</p>
+                    </div>
+                </a>
+
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hack.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>Mohamed Ahmed</h3>
+                        <p class="info">Member</p>
+                    </div>
+                </a>
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hack.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>Areej Ezzat</h3>
+                        <p class="info">Member</p>
+                    </div>
+                </a>
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hack.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>Ashrakat Atef</h3>
+                        <p class="info">Member</p>
+                    </div>
+                </a>
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hack.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>Rahma Mohamed</h3>
+                        <p class="info">Member</p>
+                    </div>
+                </a>
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hack.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>Yassmin Mohamed</h3>
+
+                        <p class="info">Member</p>
+                    </div>
+                </a>
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hack.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>Sara Salah</h3>
+                        <p class="info">Member</p>
+                    </div>
+                </a>
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hack.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>Esraa Atef</h3>
+                        <p class="info">Member</p>
+                    </div>
+                </a>
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hack.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>Rana Salem</h3>
+                        <p class="info">Member</p>
+                    </div>
+                </a>
+
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hack.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>Khloud Raafat</h3>
+                        <p class="info">Member</p>
+                    </div>
+                </a>
+
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hack.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>Mazen Mahmoud</h3>
+                        <p class="info">Member</p>
+                    </div>
+                </a>
+
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hack.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>youssef Mashhour</h3>
+                        <p class="info">Member</p>
+                    </div>
+                </a>
+
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hack.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>Shrouk Mohamed</h3>
+                        <p class="info">Member</p>
+                    </div>
+                </a>
+
+                <a href="https://www.google.com.eg/?hl=ar" target="_blank">
+                    <div class="person" style="background-image: url('hack.icon');"></div>
+                    <div class="info-wrapper">
+                        <h3>Malak Mahmoud</h3>
+                        <p class="info">Member</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+
+
+    <!-- JavaScript to handle sidebar toggle and click events -->
+    <script>
+        const toggleBtn = document.getElementById('toggle-btn');
+        const contactInfo = document.getElementById('contact-info');
+
+        // Toggle sidebar visibility
+        toggleBtn.addEventListener('click', () => {
+            contactInfo.classList.toggle('active');
+        });
+
+        // Close sidebar when clicking anywhere else
+        document.addEventListener('click', (event) => {
+            if (!contactInfo.contains(event.target) && !toggleBtn.contains(event.target)) {
+                contactInfo.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+<!-- Footer -->
+<footer>
+    <p> ❤️ Designed By Zeyad Baghdadi   ❤️</p>
+    <p> ❤️ 2024/2025 ❤️</p>
+</footer>
+
+</html>
